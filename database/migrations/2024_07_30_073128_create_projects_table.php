@@ -24,12 +24,7 @@ return new class extends Migration
             $table->string('feedback');
             $table->boolean('is_suspended');
 
-            $table->unsignedBigInteger('freelancer_id');
             $table->unsignedBigInteger('client_id');
-
-            $table->foreign('freelancer_id')
-                ->references('users')
-                ->on('id');
 
             $table->foreign('client_id')
                 ->references('users')
