@@ -14,9 +14,24 @@ return new class extends Migration
         Schema::create('messages', function (Blueprint $table) {
             $table->id();
 
-            $table->unsignedBigInteger('sender_id');
-            $table->unsignedBigInteger('receiver_id');
+            $table->unsignedBigInteger('client_id');
+            $table->unsignedBigInteger('freelancer_id');
+
             $table->unsignedBigInteger('project_id');
+
+            $table->enum('sender', ['Client', 'Freelancer']);
+
+            $table->foreign('project_id')
+                ->references('projects')
+                ->on('id');
+
+            $table->foreign('client_id')
+                ->references('users')
+                ->on('id');
+
+            $table->foreign('freelancer_id')
+                ->references('users')
+                ->on('id');
 
             $table->text('message_content');
 
