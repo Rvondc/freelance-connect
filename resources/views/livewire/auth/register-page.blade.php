@@ -25,8 +25,7 @@
                     </div>
                 </div>
             </div>
-
-
         </form>
+        <livewire:components.upload-credentials />
     </div>
 </div>

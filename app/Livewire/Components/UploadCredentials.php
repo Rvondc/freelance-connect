@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire;
+namespace App\Livewire\Components;
 
 use Livewire\Attributes\Validate;
 use Livewire\Component;
@@ -33,6 +33,6 @@ class UploadCredentials extends Component
 
     public function render()
     {
-        return view('livewire.upload-credentials');
+        return view('livewire.components.upload-credentials');
     }
 }

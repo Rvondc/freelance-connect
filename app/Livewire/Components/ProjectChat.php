@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire;
+namespace App\Livewire\Components;
 
 use App\Models\Message;
 use App\Models\Project;
@@ -41,6 +41,6 @@ class ProjectChat extends Component
 
     public function render()
     {
-        return view('livewire.project-chat');
+        return view('livewire.components.project-chat');
     }
 }
