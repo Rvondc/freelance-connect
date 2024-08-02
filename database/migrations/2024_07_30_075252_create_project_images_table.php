@@ -20,8 +20,8 @@ return new class extends Migration
             $table->unsignedBigInteger('project_id');
 
             $table->foreign('project_id')
-                ->references('projects')
-                ->on('id');
+                ->on('projects')
+                ->references('id');
 
             $table->timestamps();
         });

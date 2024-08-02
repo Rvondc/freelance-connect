@@ -22,16 +22,16 @@ return new class extends Migration
             $table->enum('sender', ['Client', 'Freelancer']);
 
             $table->foreign('project_id')
-                ->references('projects')
-                ->on('id');
+                ->references('id')
+                ->on('projects');
 
             $table->foreign('client_id')
-                ->references('users')
-                ->on('id');
+                ->references('id')
+                ->on('users');
 
             $table->foreign('freelancer_id')
-                ->references('users')
-                ->on('id');
+                ->references('id')
+                ->on('users');
 
             $table->text('message_content');
 

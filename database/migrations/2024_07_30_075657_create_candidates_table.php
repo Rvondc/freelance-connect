@@ -18,12 +18,12 @@ return new class extends Migration
             $table->unsignedBigInteger('freelancer_id');
 
             $table->foreign('project_id')
-                ->references('projects')
-                ->on('id');
+                ->on('projects')
+                ->references('id');
 
             $table->foreign('freelancer_id')
-                ->references('users')
-                ->on('id');
+                ->on('users')
+                ->references('id');
 
             $table->timestamps();
         });

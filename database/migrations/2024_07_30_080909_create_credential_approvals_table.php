@@ -23,8 +23,8 @@ return new class extends Migration
             $table->unsignedBigInteger('user_id');
 
             $table->foreign('user_id')
-                ->references('users')
-                ->on('id');
+                ->on('users')
+                ->references('id');
 
             $table->timestamps();
         });

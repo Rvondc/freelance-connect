@@ -21,16 +21,16 @@ return new class extends Migration
             $table->unsignedBigInteger('issuer_id');
 
             $table->foreign('project_id')
-                ->references('projects')
-                ->on('id');
+                ->on('projects')
+                ->references('id');
 
             $table->foreign('receiver_id')
-                ->references('users')
-                ->on('id');
+                ->on('users')
+                ->references('id');
 
             $table->foreign('issuer_id')
-                ->references('users')
-                ->on('id');
+                ->on('users')
+                ->references('id');
 
             $table->timestamps();
         });
