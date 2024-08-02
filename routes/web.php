@@ -1,6 +1,6 @@
 <?php
 
-use App\Livewire\HomePage;
+use App\Livewire\Auth\RegisterPage;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', HomePage::class);
+Route::get('/', RegisterPage::class);
