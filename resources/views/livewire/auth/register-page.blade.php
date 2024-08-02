@@ -1,14 +1,27 @@
 <div>
     <!-- NOTE: Increment the $page by 1 to move to the next page -->
     <!-- NOTE: Decrement the $page by 1 to move to the previous page -->
+
+    <x-slot name="title">Create Account</x-slot>
+
+    <!-- TODO: Make it look good -->
+    @if ($errors->any())
+    <div class="fixed inset-0 flex items-center justify-center z-50" x-cloak>
+        <div class="bg-white rounded-lg shadow-lg p-4 min-w-96">
+            @foreach ($errors->all() as $error)
+            <p class="text-red-500">{{ $error }}</p>
+            @endforeach
+            <button wire:click="resetErrors()" class="mt-4 px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600 focus:outline-none">
+                Close
+            </button>
+        </div>
+    </div>
+    @endif
+
     @if ($page === 0)
-
     <div class="h-full py-5 text-left md:h-screen bg-slate-950">
-        <x-slot name="title">Create Account</x-slot>
-
         <div class="container mx-auto size-4/5 lg:size-3/5">
             <h1 class="text-3xl font-bold text-white max-sm:text-2xl">Create <span class="text-green-400">Account</span></h1>
-
             <form wire:submit="nextPage()">
                 <div class="px-3 pb-3 pt-1.5 my-2 rounded-lg bg-slate-800 shadow-lg shadow-black/30">
                     <h3 class="mb-1 font-semibold text-gray-200">I'm a</h3>
@@ -46,6 +59,13 @@
                         </div>
                     </div>
 
+                    <div class="flex flex-col gap-2 md:my-8 md:flex-row md:gap-3">
+                        <div class="flex flex-col md:basis-3/5">
+                            <label for="birthdate" class="text-sm font-semibold text-white">Birthdate</label>
+                            <input wire:model="birthdate" type="date" name="birhtdate" id="birthdate" class="h-10 px-3 rounded-lg md:w-full">
+                        </div>
+                    </div>
+
                     <div class="flex flex-col gap-2 my-2 md:flex-row md:gap-3">
                         <div class="flex flex-col md:basis-1/2">
                             <label for="username" class="text-sm font-semibold text-white">Username</label>
@@ -78,7 +98,7 @@
                 </div>
 
                 <div class="flex flex-col justify-center gap-3 mt-3 md:mt-5">
-                    <button type="submit" class="h-10 p-1 mx-auto font-semibold {{ $agreed_terms ? 'bg-green-400' : 'bg-gray-400' }} rounded-lg max-w-fit md:p-2">
+                    <button {{ $agreed_terms ? '' : 'disabled' }} type="submit" class="h-10 p-1 mx-auto font-semibold {{ $agreed_terms ? 'bg-green-400' : 'bg-gray-400' }} rounded-lg max-w-fit md:p-2">
                         Create Account
                     </button>
                     <p class="mx-auto text-xs font-medium text-gray-400">
@@ -170,10 +190,10 @@
                     </form>
                 </div>
                 <div class="mt-8 inline-flex">
-                    <button wire:click="prevPage()" class="bg-green-400 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded-l">
+                    <button wire:click="prevPage()" class="bg-green-400 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded-l-lg">
                         Prev
                     </button>
-                    <button wire:click="nextPage()" class="bg-green-400 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded-r">
+                    <button wire:click="nextPage()" class="bg-green-400 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded-r-lg">
                         Next
                     </button>
                 </div>
@@ -186,9 +206,15 @@
         <div>
             <div class="bg-slate-950 flex-col items-center content-center min-h-screen p-10">
                 <h1 class="text-2xl font-semibold mb-4 text-white">Confirmation Page</h1>
+                <p class="text-gray-500">Check your data</p>
                 <div class="mt-8 inline-flex">
-                    <button wire:click="prevPage()" class="bg-green-400 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded">
+                    <button wire:click="prevPage()" class="bg-green-400 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded-lg">
                         Prev
+                    </button>
+                </div>
+                <div class="flex flex-col justify-center gap-3 mt-3 md:mt-5">
+                    <button wire:click="save()" type="submit" class="mx-auto font-semibold transition-transform ease-in-out hover:transform hover:scale-110 bg-blue-400 shadow-blue-400/30 shadow-xl rounded-lg max-w-fit p-4">
+                        Become a {{ $role }}!
                     </button>
                 </div>
             </div>

@@ -2,7 +2,8 @@
 
 namespace App\Livewire\Auth;
 
-use Livewire\Attributes\On;
+use App\Models\CredentialApproval;
+use App\Models\User;
 use Livewire\Attributes\Validate;
 use Livewire\Component;
 use Livewire\Features\SupportFileUploads\WithFileUploads;
@@ -23,25 +24,23 @@ class RegisterPage extends Component
     #[Validate('required', as: 'Last Name')]
     public string $last_name = "";
 
-    #[Validate('required', as: 'Username')]
+    #[Validate('required | unique:users', as: 'Username')]
     public string $username = "";
 
-    #[Validate('required', as: 'Email')]
+    #[Validate('required | unique:users', as: 'Email')]
     public string $email = "";
+
+    #[Validate('required', as: 'Birthdate')]
+    public string $birthdate;
 
     #[Validate('required', as: 'Password')]
     public string $password = "";
 
-    #[Validate('required', as: 'Confirm Password')]
+    #[Validate('required | same:password', as: 'Confirm Password')]
     public string $confirm_password = "";
 
-    #[Validate('required | max:10000', as: 'Front ID Image')]
     public $front_id_image;
-
-    #[Validate('required | max:10000', as: 'Back ID Image')]
     public $back_id_image;
-
-    #[Validate('required | max:10000', as: 'Selfie ID Image')]
     public $selfie_image;
 
     public bool $agreed_terms = false;
@@ -49,13 +48,71 @@ class RegisterPage extends Component
     public function save()
     {
         $this->validate();
+        $this->validate([
+            'front_id_image' => 'required|image|max:10000',
+            'back_id_image' => 'required|image|max:10000',
+            'selfie_image' => 'required|image|max:10000',
+        ]);
+
+        $user = User::query()->create([
+            'first_name' => $this->first_name,
+            'middle_name' => $this->middle_name,
+            'last_name' => $this->last_name,
+            'username' => $this->username,
+            'email' => $this->email,
+            'user_type' => $this->role,
+            'profile_picture' => 'default_profile.png',
+            'banner_picture' => 'default_banner.png',
+            'bio' => '',
+            'website_link' => '',
+            'is_suspended' => false,
+            'birthdate' => $this->birthdate,
+            'password' => bcrypt($this->password),
+        ]);
+
+        $basename = sha1($this->first_name . $this->last_name . $this->username);
+
+        $front = $basename . '_front';
+        $back = $basename . '_back';
+        $selfie = $basename . '_selfie';
+
+        $this->front_id_image->storePubliclyAs(path: 'public/credentials/images', name: $front);
+        $this->back_id_image->storePubliclyAs(path: 'public/credentials/images', name: $back);
+        $this->selfie_image->storePubliclyAs(path: 'public/credentials/images', name: $selfie);
+
+        CredentialApproval::query()->create([
+            'front_id_image' => $front,
+            'back_id_image' => $back,
+            'selfie_image' => $selfie,
+            'status' => 'Pending',
+            'user_id' => $user->id,
+        ]);
+        
+        // TODO: add redirect to Login Page
     }
 
-    public function nextPage() {
+    public function nextPage()
+    {
+        if ($this->page === 1) {
+            $this->validate([
+                'front_id_image' => 'required|image|max:10000',
+                'back_id_image' => 'required|image|max:10000',
+                'selfie_image' => 'required|image|max:10000',
+            ]);
+        } else {
+            $this->validate();
+        }
+
         $this->page++;
     }
 
-    public function prevPage() {
+    public function resetErrors()
+    {
+        $this->resetValidation();
+    }
+
+    public function prevPage()
+    {
         $this->page--;
     }
 
