@@ -28,6 +28,7 @@ return new class extends Migration
 
             $table->string('bio');
             $table->string('website_link');
+            $table->date('birthdate');
 
             $table->boolean('is_suspended');
 
