@@ -7,4 +7,4 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', RegisterPage::class);
 Route::get('/admin', AdminHomePage::class);
-Route::get("/login", Login::class); 
+Route::get('/login', Login::class); 
