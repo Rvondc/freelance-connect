@@ -15,9 +15,54 @@ class DatabaseSeeder extends Seeder
     {
         // User::factory(10)->create();
 
-        User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
+        User::factory(10)->create();
+
+        User::query()->create([
+            'first_name' => 'Chris Dominic',
+            'middle_name' => 'Panaguiton',
+            'last_name' => 'Chan',
+            'username' => 'admin',
+            'email' => 'adm@gmail.com',
+            'user_type' => 'Admin',
+            'profile_picture' => fake()->imageUrl(),
+            'banner_picture' => fake()->imageUrl(),
+            'bio' => 'The quick brown fox jumps over the lazy dog.',
+            'website_link' => fake()->url(),
+            'birthdate' => fake()->date(),
+            'is_suspended' => false,
+            'password' => bcrypt('password'),
+        ]);
+
+        User::query()->create([
+            'first_name' => 'Chris Dominic',
+            'middle_name' => 'Panaguiton',
+            'last_name' => 'Chan',
+            'username' => 'freelancer',
+            'email' => 'fre@gmail.com',
+            'user_type' => 'Freelancer',
+            'profile_picture' => fake()->imageUrl(),
+            'banner_picture' => fake()->imageUrl(),
+            'bio' => 'The quick brown fox jumps over the lazy dog.',
+            'website_link' => fake()->url(),
+            'birthdate' => fake()->date(),
+            'is_suspended' => false,
+            'password' => bcrypt('password'),
+        ]);
+
+        User::query()->create([
+            'first_name' => 'Chris Dominic',
+            'middle_name' => 'Panaguiton',
+            'last_name' => 'Chan',
+            'username' => 'client',
+            'email' => 'cli@gmail.com',
+            'user_type' => 'Client',
+            'profile_picture' => fake()->imageUrl(),
+            'banner_picture' => fake()->imageUrl(),
+            'bio' => 'The quick brown fox jumps over the lazy dog.',
+            'website_link' => fake()->url(),
+            'birthdate' => fake()->date(),
+            'is_suspended' => false,
+            'password' => bcrypt('password'),
         ]);
     }
 }
