@@ -32,6 +32,15 @@ class User extends Authenticatable
         'password',
     ];
 
+    public function getFullname()
+    {
+        if ($this->middle_name) {
+            return $this->first_name . ' ' . $this->middle_name[0] . '. ' . $this->last_name;
+        } else {
+            return $this->first_name . ' ' . $this->last_name;
+        }
+    }
+
     /**
      * The attributes that should be hidden for serialization.
      *
