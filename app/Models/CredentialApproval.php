@@ -17,4 +17,8 @@ class CredentialApproval extends Model
         'status',
         'user_id',
     ];
+
+    public function getUser() {
+        return User::query()->find($this->user_id);
+    }
 }
