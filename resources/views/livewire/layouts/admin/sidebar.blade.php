@@ -11,7 +11,19 @@
             </div>
             <div class="my-2 bg-gray-600 h-[1px]"></div>
         </div>
-        <a href="/admin" wire:navigate>
+        <div
+            class="p-2.5 rounded-md px-4 duration-300 cursor-pointer bg-white text-black">
+            @php($user = auth()->user())
+            <p class="font-bold text-left">{{ $user->getFullname() }}</p>
+            <p class="text-left text-sm text-gray-600 font-thin">{{ $user->user_type }}</p>
+            <p></p>
+            {{-- <i class="bi bi-search text-sm"></i>
+            <input
+                type="text"
+                placeholder="Search"
+                class="text-[15px] ml-4 w-full bg-transparent focus:outline-none" /> --}}
+        </div>
+        <a href="/admin/dashboard" wire:navigate>
             <div
                 class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white">
                 <span class="material-symbols-outlined">
@@ -56,7 +68,7 @@
                 <span class="text-[15px] ml-4 text-gray-200 font-bold">User Reports</span>
             </div>
         </div>
-        <div
+        <div wire:click="logout()"
             class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white">
             <span class="material-symbols-outlined">
                 logout

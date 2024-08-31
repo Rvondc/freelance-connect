@@ -14,7 +14,6 @@ return new class extends Migration
         Schema::create('project_images', function (Blueprint $table) {
             $table->id();
 
-            $table->string('description');
             $table->string('image');
 
             $table->unsignedBigInteger('project_id');

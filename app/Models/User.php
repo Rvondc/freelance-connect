@@ -3,6 +3,8 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+
+use Exception;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -39,6 +41,16 @@ class User extends Authenticatable
         } else {
             return $this->first_name . ' ' . $this->last_name;
         }
+    }
+
+    public function getApprovalStatus() {
+        $approval = CredentialApproval::query()->where('user_id', '=', $this->id)->first();
+
+        if (!$approval) {
+            throw new Exception('Credential Approval not found');
+        }
+
+        return $approval->status;
     }
 
     /**

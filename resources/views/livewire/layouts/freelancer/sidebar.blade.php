@@ -14,7 +14,7 @@
             <div class="my-2 bg-gray-600 h-[1px]"></div>
         </div>
         <div
-            class="p-2.5 rounded-md px-4 duration-300 cursor-pointer flex flex-col bg-white text-black">
+            class="p-2.5 flex flex-col rounded-md px-4 duration-300 cursor-pointer bg-white text-black">
             @php($user = auth()->user())
             <p class="font-bold text-left">{{ $user->getFullname() }}</p>
             <p class="text-left text-sm text-gray-600 font-thin">{{ $user->user_type }} @if($user->getApprovalStatus() === 'Pending') <span class="text-yellow-600">(Pending Approval)</span> @elseif($user->getApprovalStatus() === 'Rejected') <span class="text-red-600">(Rejected)</span> @endif</p>
@@ -28,19 +28,20 @@
                 placeholder="Search"
                 class="text-[15px] ml-4 w-full bg-transparent focus:outline-none" /> --}}
         </div>
-        <a href="/client/dashboard" wire:navigate>
+        <a href="/freelancer/dashboard" wire:navigate>
             <div
                 class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white">
                 <i class="bi bi-house-door-fill"></i>
                 <span class="text-[15px] ml-4 text-gray-200 font-bold">Home</span>
             </div>
         </a>
-        <div
-            class="mt-3 flex items-center rounded-md duration-300 cursor-pointer mr-1 bg-blue-600 hover:bg-blue-700 text-white">
-            <a href="/posting/create" wire:navigate class="text-white font-bold py-5 px-4 w-[100%]">
-                <p class="m-0 leading-none text-center w-[100%]">Create Job Posting</p>
-            </a>
-        </div>
+        <a href="/jobs" wire:navigate>
+            <div
+                class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-green-400">
+                <i class="transition-all hover:rotate-180 hover:scale-150 bi bi-grid-fill"></i>
+                <span class="transition-all hover:scale-110 text-[15px] ml-4 text-green-400 font-bold">Browse</span>
+            </div>
+        </a>
         <div
             class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white">
             <i class="bi bi-bookmark-fill"></i>

@@ -18,11 +18,11 @@ return new class extends Migration
             $table->text('description');
             $table->decimal('budget');
             $table->dateTime('deadline');
-            $table->enum('status', ['Available', 'Accepted', 'InProgress', 'Finished', 'Canceled']);
-            $table->integer('likes_counter');
-            $table->decimal('rating', 2, 1);
-            $table->string('feedback');
-            $table->boolean('is_suspended');
+            $table->enum('status', ['Available', 'Accepted', 'InProgress', 'Finished', 'Canceled'])->default('Available');
+            $table->integer('likes_counter')->default(0);
+            $table->decimal('rating', 2, 1)->nullable();
+            $table->string('feedback')->nullable();
+            $table->boolean('is_suspended')->default(false);
 
             $table->unsignedBigInteger('client_id');
 

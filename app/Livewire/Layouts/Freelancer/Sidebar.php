@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire\Layouts\Admin;
+namespace App\Livewire\Layouts\Freelancer;
 
 use Livewire\Component;
 
@@ -15,6 +15,6 @@ class Sidebar extends Component
 
     public function render()
     {
-        return view('livewire.layouts.admin.sidebar');
+        return view('livewire.layouts.freelancer.sidebar');
     }
 }

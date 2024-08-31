@@ -16,10 +16,18 @@ class Review extends Component
         $this->pending = CredentialApproval::all();
     }
 
-    public function approve($id) {
+    public function approve($id)
+    {
         $cred = CredentialApproval::query()->find($id);
 
         $cred->update(['status' => 'Approved']);
+    }
+
+    public function reject($id)
+    {
+        $cred = CredentialApproval::query()->find($id);
+
+        $cred->update(['status' => 'Rejected']);
     }
 
     public function render()

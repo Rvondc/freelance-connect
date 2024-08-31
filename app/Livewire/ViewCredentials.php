@@ -4,17 +4,19 @@ namespace App\Livewire;
 
 use App\Models\CredentialApproval;
 use App\Models\User;
+use Livewire\Attributes\Layout;
 use LivewireUI\Modal\ModalComponent;
 
+#[Layout('components.layouts.admin')]
 class ViewCredentials extends ModalComponent
 {
-    public $user;
-    public $pending;
+    public CredentialApproval $approval;
+    public User $user;
 
-    public function mount($user, $pending)
+    public function mount(CredentialApproval $approval)
     {
-        $this->user = User::query()->find($user);
-        $this->pending = CredentialApproval::query()->find($pending);
+        $this->approval = $approval;
+        $this->user = $approval->getUser();
     }
 
     public function render()

@@ -34,7 +34,7 @@
 
                 <div class="flex flex-col gap-5 mt-8 text-center">
                     <button type="submit" class="px-8 py-3 mx-auto font-semibold bg-orange-400 rounded-lg w-fit">Sign In</button>
-                    <p class="text-xs font-medium text-gray-400">Don't have an account? <a href="#" class="text-orange-400">Register here</a></p>
+                    <p class="text-xs font-medium text-gray-400">Don't have an account? <a href="/register" wire:navigate class="text-orange-400">Register here</a></p>
                 </div>
             </form>
         </div>

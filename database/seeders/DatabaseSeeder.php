@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\CredentialApproval;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -33,7 +34,7 @@ class DatabaseSeeder extends Seeder
             'password' => bcrypt('password'),
         ]);
 
-        User::query()->create([
+        $freelancer = User::query()->create([
             'first_name' => 'Chris Dominic',
             'middle_name' => 'Panaguiton',
             'last_name' => 'Chan',
@@ -49,7 +50,7 @@ class DatabaseSeeder extends Seeder
             'password' => bcrypt('password'),
         ]);
 
-        User::query()->create([
+        $client = User::query()->create([
             'first_name' => 'Chris Dominic',
             'middle_name' => 'Panaguiton',
             'last_name' => 'Chan',
@@ -63,6 +64,22 @@ class DatabaseSeeder extends Seeder
             'birthdate' => fake()->date(),
             'is_suspended' => false,
             'password' => bcrypt('password'),
+        ]);
+
+        CredentialApproval::query()->create([
+            'user_id' => $freelancer->id,
+            'status' => 'Pending',
+            'front_id_image' => fake()->imageUrl(),
+            'back_id_image' => fake()->imageUrl(),
+            'selfie_image' => fake()->imageUrl(),
+        ]);
+
+        CredentialApproval::query()->create([
+            'user_id' => $client->id,
+            'status' => 'Pending',
+            'front_id_image' => fake()->imageUrl(),
+            'back_id_image' => fake()->imageUrl(),
+            'selfie_image' => fake()->imageUrl(),
         ]);
     }
 }

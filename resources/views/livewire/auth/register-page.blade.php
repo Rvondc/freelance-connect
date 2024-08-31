@@ -102,7 +102,7 @@
                         Create Account
                     </button>
                     <p class="mx-auto text-xs font-medium text-gray-400">
-                        Already have an account? <a href="#" class="text-green-400">Sign In</a>
+                        Already have an account? <a href="/login" wire:navigate class="text-green-400">Sign In</a>
                     </p>
                 </div>
             </form>
