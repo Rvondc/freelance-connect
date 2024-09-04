@@ -1,18 +1,22 @@
 <?php
 
 use App\Livewire\Admin\AdminHomePage;
+use App\Livewire\AdminJobManager;
 use App\Livewire\Auth\RegisterPage;
 use App\Livewire\Auth\Login;
 use App\Livewire\ClientDashboard;
 use App\Livewire\CreatePosting;
 use App\Livewire\Credential\Review as CredReview;
+use App\Livewire\FreelancerBookmark;
 use App\Livewire\FreelancerDashboard;
+use App\Livewire\FreelancerProfile;
 use App\Livewire\Jobs;
 use App\Livewire\ViewCredentials;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    $user = auth()->user();
+    $user = Auth::user();
 
     if ($user->user_type === 'Admin') {
         return redirect('/admin/dashboard');
@@ -38,9 +42,17 @@ Route::get('/admin/dashboard', AdminHomePage::class)
 Route::get('/freelancer/dashboard', FreelancerDashboard::class)
     ->middleware('auth');
 
+Route::get('/freelancer/bookmarks', FreelancerBookmark::class)
+    ->middleware('auth');
+
+Route::get('/freelancer/profile', FreelancerProfile::class)
+    ->middleware('auth');
+
 Route::get('/credential/review', CredReview::class);
 
 Route::get('/credential/view/{approval}', ViewCredentials::class);
+
+Route::get('/manage/jobs', AdminJobManager::class);
 
 Route::get('/posting/create', CreatePosting::class);
 

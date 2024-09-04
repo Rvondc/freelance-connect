@@ -28,6 +28,7 @@
                 placeholder="Search"
                 class="text-[15px] ml-4 w-full bg-transparent focus:outline-none" /> --}}
         </div>
+
         <a href="/freelancer/dashboard" wire:navigate>
             <div
                 class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white">
@@ -35,6 +36,7 @@
                 <span class="text-[15px] ml-4 text-gray-200 font-bold">Home</span>
             </div>
         </a>
+
         <a href="/jobs" wire:navigate>
             <div
                 class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-green-400">
@@ -42,11 +44,23 @@
                 <span class="transition-all hover:scale-110 text-[15px] ml-4 text-green-400 font-bold">Browse</span>
             </div>
         </a>
-        <div
-            class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white">
-            <i class="bi bi-bookmark-fill"></i>
-            <span class="text-[15px] ml-4 text-gray-200 font-bold">Bookmark</span>
-        </div>
+
+        <a href="/freelancer/bookmarks" wire:navigate>
+            <div
+                class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white">
+                <i class="bi bi-bookmark-fill"></i>
+                <span class="text-[15px] ml-4 text-gray-200 font-bold">Bookmark</span>
+            </div>
+        </a>
+
+        <a href="/freelancer/profile" wire:navigate>
+            <div
+                class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white">
+                <i class="bi bi-person-fill"></i>
+                <span class="text-[15px] ml-4 text-gray-200 font-bold">Profile</span>
+            </div>
+        </a>
+
         <div class="my-4 bg-gray-600 h-[1px]"></div>
         <div
             class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white"
@@ -63,13 +77,10 @@
             class="text-left text-sm mt-2 w-4/5 mx-auto text-gray-200 font-bold"
             id="submenu">
             <h1 class="cursor-pointer p-2 hover:bg-blue-600 rounded-md mt-1">
-                Social
+                Client
             </h1>
             <h1 class="cursor-pointer p-2 hover:bg-blue-600 rounded-md mt-1">
-                Personal
-            </h1>
-            <h1 class="cursor-pointer p-2 hover:bg-blue-600 rounded-md mt-1">
-                Friends
+                System
             </h1>
         </div>
         <div wire:click="logout()"

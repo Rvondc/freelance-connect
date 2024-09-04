@@ -2,7 +2,9 @@
 
 namespace App\Livewire\Components;
 
+use App\Models\Bookmark;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
 class JobPostingCard extends Component
@@ -18,8 +20,30 @@ class JobPostingCard extends Component
         $this->client = User::query()->find($job->client_id);
     }
 
+    public function bookmark()
+    {
+        $bookmarked = Bookmark::query()
+            ->where('user_id', Auth::id())
+            ->where('project_id', $this->job->id)
+            ->first();
+
+        if ($bookmarked) {
+            $bookmarked->delete();
+        } else {
+            Bookmark::create([
+                'user_id' => Auth::id(),
+                'project_id' => $this->job->id
+            ]);
+        }
+    }
+
     public function render()
     {
-        return view('livewire.components.job-posting-card');
+        $bookmarked = Bookmark::query()
+            ->where('user_id', Auth::id())
+            ->where('project_id', $this->job->id)
+            ->exists();
+
+        return view('livewire.components.job-posting-card')->with('bookmarked', $bookmarked);
     }
 }

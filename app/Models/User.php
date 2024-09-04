@@ -34,6 +34,14 @@ class User extends Authenticatable
         'password',
     ];
 
+    public function bookmarks() {
+        return $this->hasMany(Bookmark::class, 'user_id');
+    }
+
+    public function jobs() {
+        return $this->hasMany(Project::class, 'client_id');
+    }
+
     public function getFullname()
     {
         if ($this->middle_name) {

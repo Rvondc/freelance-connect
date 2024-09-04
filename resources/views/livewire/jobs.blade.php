@@ -15,12 +15,11 @@
         </div>
 
     </div>
-    <div class="bg-blue-950 h-full p-4">
-        <div class="bg-white rounded p-4 h-full">
-            @php($jobs = \App\Models\Project::all())
+    <div class="bg-[#151922] h-full p-4">
+        <div class="bg-[#303030] rounded p-4 h-full">
             <div class="flex justify-between place-items-center">
-                <h1 class="font-bold text-2xl mb-3">Jobs ({{ count($jobs) }})</h1>
-                <input class="border border-black rounded p-2" type="text" name="" id="" placeholder="Enter to search...">
+                <h1 class="font-bold text-2xl text-white mb-3">Jobs <span class="text-green-400">({{ count($jobs) }})</span></h1>
+                <input wire:model.live="search" class="border border-white rounded p-2" type="text" placeholder="Enter to search...">
             </div>
             <div class="flex flex-wrap">
                 @foreach ($jobs as $job)

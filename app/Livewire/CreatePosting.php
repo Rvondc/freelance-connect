@@ -4,6 +4,7 @@ namespace App\Livewire;
 
 use App\Models\Project;
 use App\Models\ProjectImages;
+use Illuminate\Support\Facades\Auth;
 use Livewire\Attributes\Layout;
 use Livewire\Component;
 use Livewire\Features\SupportFileUploads\WithFileUploads;
@@ -34,7 +35,7 @@ class CreatePosting extends Component
             'description' => $this->description,
             'budget' => $this->budget,
             'deadline' => $this->deadline,
-            'client_id' => auth()->user()->id
+            'client_id' => Auth::user()->id
         ]);
 
         foreach ($this->images as $image) {

@@ -25,5 +25,15 @@ class Project extends Model
         return ProjectImages::query()->where('project_id', '=', $this->id)->get();
     }
 
+    public function client() {
+        return $this->belongsTo(User::class, 'client_id');
+    }
+
+    protected function casts() {
+        return [
+            'deadline' => 'datetime',
+        ];
+    }
+
     use HasFactory;
 }

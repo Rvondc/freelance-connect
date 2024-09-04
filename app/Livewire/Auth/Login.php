@@ -17,7 +17,7 @@ class Login extends Component
             'password' => 'required',
         ]);
 
-        if (auth()->attempt(['email' => $this->email, 'password' => $this->password])) {
+        if (Auth::attempt(['email' => $this->email, 'password' => $this->password])) {
             $user = Auth::user();
 
             if ($user->user_type === 'Admin') {
