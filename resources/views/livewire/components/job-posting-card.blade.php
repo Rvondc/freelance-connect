@@ -34,8 +34,10 @@
         </button>
 
         <div class="flex justify-between p-2">
-            <p class="text-white font-bold">₱ {{ number_format($job->budget, 2) }}</p>
-            <button class="transition-transform bg-green-500 px-3 rounded border-white border hover:scale-110 text-white">Details</button>
+            <livewire:components.job-details-modal :job="$job" />
+
+            <p class="font-bold">₱ {{ number_format($job->budget, 2) }}</p>
+            <button class="px-3 text-white transition-transform bg-green-500 border border-black rounded hover:scale-110" x-data wire:click="$dispatch('open-modal')">Details</button>
         </div>
     </div>
 </div>
