@@ -2,7 +2,7 @@
     <div class="border border-white rounded-md relative shadow-md">
         @php($first = $images[0]->image)
         <div class="bg-slate-800 rounded-t-md">
-            <img class="max-w-64 object-cover aspect-square rounded-t-md opacity-60 blur-[1px]" src="{{ asset('storage/projects/images/' . $first) }}" alt="{{ $job->name }}">
+            <img class="max-w-64 object-cover aspect-square rounded-t-md opacity-60" src="{{ asset('storage/projects/images/' . $first) }}" alt="{{ $job->name }}">
         </div>
 
         <div class="absolute z-10 top-[100px] left-2">
@@ -36,7 +36,7 @@
         <div class="flex justify-between p-2">
             <livewire:components.job-details-modal :job="$job" />
 
-            <p class="font-bold">₱ {{ number_format($job->budget, 2) }}</p>
+            <p class="font-bold text-white">₱ {{ number_format($job->budget, 2) }}</p>
             <button class="px-3 text-white transition-transform bg-green-500 border border-black rounded hover:scale-110" x-data wire:click="$dispatch('open-modal')">Details</button>
         </div>
     </div>
